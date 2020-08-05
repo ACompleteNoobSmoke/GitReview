@@ -59,7 +59,7 @@ public class rank {
     }
 
     public void viewAnimeList() {
-        if (anime.length == 0) {
+        if (anime.length < 1) {
             System.out.println("Anime List Currently Empty");
             return;
         }

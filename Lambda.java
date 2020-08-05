@@ -118,7 +118,7 @@ public class Lambda {
 
     // Convert Array To Linked List
     public void arraytoList(rank user) {
-        if (user.getAnimeList().length <= 1) {
+        if (user.getAnimeList().length < 1) {
             return;
         }
 
@@ -131,10 +131,12 @@ public class Lambda {
 
     // Convert Linked List To Array
     public void listToArray(rank user) {
-        if (faves.size == 0) {
-            return;
+        FavoriteAnime[] animes = null;
+        if (faves.size < 1) {
+            animes = new FavoriteAnime[0];
+        } else {
+            animes = faves.listToArray();
         }
-        FavoriteAnime[] animes = faves.listToArray();
         user.setAnimeList(animes);
     }
 
@@ -277,7 +279,6 @@ public class Lambda {
         FavoriteAnime topRemoved = faves.removeHead();
         if (topRemoved != null) {
             listToArray(user);
-            arraytoList(user);
         }
         return topRemoved;
     }
@@ -286,7 +287,6 @@ public class Lambda {
         FavoriteAnime bottomRemoved = faves.removeTail();
         if (bottomRemoved != null) {
             listToArray(user);
-            arraytoList(user);
         }
         return bottomRemoved;
     }

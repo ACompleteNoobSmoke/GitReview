@@ -35,11 +35,16 @@ public class animeLinkedList {
     }
 
     public FavoriteAnime removeHead() {
+        FavoriteAnime removedHead;
         if (isEmpty()) {
             return null;
+        } else if (size == 1) {
+            removedHead = Head.getAnime();
+            Head = null;
+            size = 0;
+            return removedHead;
         }
 
-        FavoriteAnime removedHead;
         removedHead = Head.getAnime();
         Head = Head.next;
         size--;
@@ -49,15 +54,17 @@ public class animeLinkedList {
     public FavoriteAnime removeTail() {
         if (isEmpty()) {
             return null;
+        } else if (size == 1) {
+            return removeHead();
         }
-
         FavoriteAnime removedTail = null;
         animeNode current = Head;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size - 2; i++) {
             current = current.next;
         }
-        removedTail = current.anime;
-        current = null;
+        removedTail = current.next.anime;
+        System.out.println("Deleted This: " + removedTail);
+        current.next = null;
         size--;
         return removedTail;
     }
